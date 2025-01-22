@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Managementsystem</title>
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/media.css" />
+    <script defer src="moment.min.js"></script>
+    <script
+      defer
+      src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"
+    ></script>
+    <script
+      defer
+      src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"
+    ></script>
+    <script defer src="main.js"></script>
+  </head>
+  <body class="body">
+    <header class="header">
+      <div class="container header__container flex">
+        <a href="#" class="header__logo">
+          <img
+            src="img/logo.svg"
+            alt="skb"
+            class="header__logo-img"
+            width="50"
+            height="50"
+          />
+        </a>
+        <input
+          type="text"
+          class="header__input"
+          id="header__input"
+          placeholder="Введите запрос"
+        />
+      </div>
+    </header>
+    <div class="clients flex">
+      <div class="container">
+        <h1 class="clients__title">Клиенты</h1>
+        <table class="clients__table">
+          <thead class="title__thead">
+            <tr>
+              <th class="clients__column clients__column-1">
+                ID
+                <button class="clients__arrow" id="btnArrow1"></button>
+              </th>
+              <th class="clients__column clients__column-2">
+                <button class="clients__arrow-2" id="btnArrow2">
+                  <span class="span_colum"> Фамилия Имя Отчество </span>
+                </button>
+              </th>
+              <th class="clients__column clients__column-3">
+                Дата и время <br />создания
+                <button
+                  class="clients__arrow clients__arrow-3"
+                  id="btnArrow3"
+                ></button>
+              </th>
+              <th class="clients__column clients__column-4">
+                Последние <br />изменения
+                <button
+                  class="clients__arrow clients__arrow-4"
+                  id="btnArrow4"
+                ></button>
+              </th>
+              <th class="clients__column clients__column-5">Контакты</th>
+              <th class="clients__column clients__column-6">Действия</th>
+            </tr>
+          </thead>
+          <tbody class="clients__list" id="clients__list"></tbody>
+        </table>
+        <button class="clients__button" id="clients__button">
+          <svg
+            class="addClient-icon"
+            width="22"
+            height="16"
+            viewBox="0 0 23 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M14.5 8C16.71 8 18.5 6.21 18.5 4C18.5 1.79 16.71 0 14.5 0C12.29 0 10.5 1.79 10.5 4C10.5 6.21 12.29 8 14.5 8ZM5.5 6V3H3.5V6H0.5V8H3.5V11H5.5V8H8.5V6H5.5ZM14.5 10C11.83 10 6.5 11.34 6.5 14V16H22.5V14C22.5 11.34 17.17 10 14.5 10Z"
+              fill="#9873FF"
+            />
+          </svg>
+          Добавить клиента
+        </button>
+        <div id="wrapper"></div>
+        <form action="" class="formAdd" id="formAdd">
+          <div class="formAdd_popup" id="formAdd_popup">
+            <div class="formAdd_popupBox">
+              <div class="formAdd_popupBox-top flex">
+                <h2 class="formAdd_popupBox-title">Новый клиент</h2>
+                <div
+                  class="formAdd_popupBox-close"
+                  id="formAddpopupBoxclose"
+                ></div>
+              </div>
+              <div class="formAdd_popupBox-center">
+                <div class="popupBo_group">
+                  <input
+                    id="formAddSurname"
+                    type="text"
+                    class="formAdd_popupBo-surname"
+                    placeholder="Фамилия"
+                    required
+                  />
+                  <label for="" class="label"
+                    >Фамилия<sup class="popupBox_sup">*</sup></label
+                  >
+                </div>
+                <div class="popupBo_group">
+                  <input
+                    id="formAddName"
+                    type="text"
+                    class="formAdd_popupBo-name"
+                    placeholder="Имя"
+                    required
+                  />
+                  <label for="" class="label"
+                    >Имя<sup class="popupBox_sup">*</sup></label
+                  >
+                </div>
+
+                <div class="popupBo_group">
+                  <input
+                    id="formAddLastName"
+                    type="text"
+                    class="formAdd_popupBo-LastName"
+                    placeholder="Отчество"
+                    required
+                  />
+                  <label for="" class="label"
+                    >Отчество<sup class="popupBox_sup">*</sup></label
+                  >
+                </div>
+
+                <!-- <input
+                  id="formAddLastName"
+                  type="text"
+                  class="formAdd_popupBo-lastName"
+                  placeholder="Отчество"
+                  required
+                /> -->
+              </div>
+            </div>
+            <div class="button_box" id="button_box">
+              <div class="input_contacts" id="inputContacts"></div>
+              <button class="buttonAdd" id="buttonAdd" type="button">
+                Добавить контакт
+              </button>
+              <div class="option_contact" id="option_contact"></div>
+            </div>
+            <button class="buttonAdd_save" id="buttonAdd_save" type="submit">
+              Сохранить
+            </button>
+            <button class="buttonCancel" id="buttonCancel">Отмена</button>
+          </div>
+        </form>
+
+        <div class="formChange" id="formChange">
+          <div class="formChange_popup" id="formChange_popup">
+            <form action="">
+              <div class="formChange_popupBox">
+                <div class="formChange_popupBox-top flex">
+                  <h2 class="formChange_popupBox-title">
+                    Изменить данные
+                    <span class="formChange_span" id="formChangeSpan">
+                      ID:
+                    </span>
+                  </h2>
+                  <div
+                    class="formChange_popupBox-close"
+                    id="formChangeClose"
+                  ></div>
+                </div>
+                <div class="formChange_popupBox-center">
+                  <div class="popupBo_group">
+                    <input
+                      id="formChangeSurname"
+                      type="text"
+                      class="formChange_popupBo-surname"
+                    />
+                    <label for="" class="labelChange"
+                      >Фамилия<sup class="popupBox_sup">*</sup></label
+                    >
+                  </div>
+                  <div class="popupBo_group">
+                    <input
+                      id="formChangeName"
+                      type="text"
+                      class="formChange_popupBo-name"
+                    />
+                    <label for="" class="labelChange"
+                      >Имя<sup class="popupBox_sup">*</sup></label
+                    >
+                  </div>
+                  <div class="popupBo_group">
+                    <input
+                      id="formChangeLastName"
+                      type="text"
+                      class="formChange_popupBo-lastName"
+                    />
+                    <label for="" class="labelChange"
+                      >Отчество<sup class="popupBox_sup">*</sup></label
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="buttonChange_box" id="buttonChange_box">
+                <div class="inputChange_contacts" id="inputChContacts"></div>
+                <button
+                  class="buttonChange-1"
+                  id="buttonChange-1"
+                  type="button"
+                >
+                  Добавить контакт
+                </button>
+                <div
+                  class="optionChange_contact"
+                  id="optionChangecontact"
+                ></div>
+              </div>
+              <button
+                class="buttonChange_save"
+                id="buttonAddCh_save"
+                type="submit"
+              >
+                Сохранить
+              </button>
+            </form>
+
+            <button class="buttonCancelChange" id="buttonCancelChange">
+              Удалить клиента
+            </button>
+          </div>
+        </div>
+        <div class="popup__deleteClient" id="popupDeleteClient">
+          <div class="popup__deleteClient-top" id="popupDeleteClientTop">
+            <h2 class="popup__deleteClient-title">Удалить клиента</h2>
+            <div
+              class="popup__deleteClient-close"
+              id="popupDeleteClientClose"
+            ></div>
+          </div>
+
+          <div class="popup__deleteClient-text">
+            Вы действительно хотите удалить данного клиента?
+          </div>
+          <button
+            class="popup__deleteClient-btnDelete"
+            id="popupDeleteDell"
+            type="button"
+          >
+            Удалить
+          </button>
+          <button type="button" class="popup__delete-link" id="popupdeletelink">
+            Отмена
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
